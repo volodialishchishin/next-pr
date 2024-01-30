@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <a>
+    <img src="./public/logo.png" height="96">
+    <h3 align="center">Next.js Prisma PostgreSQL Auth Starter with Shadcn</h3>
+  </a>
+</p>
 
-## Getting Started
+<p align="center">
+This is a <a href="https://nextjs.org/">Next.js</a> starter kit that uses <a href="https://next-auth.js.org/">Next-Auth</a> for simple email + password login<br/>
+<a href="https://www.prisma.io/">Prisma</a> as the ORM, and Postgres database to persist the data. This application uses <a href="https://ui.shadcn.com/">Shadcn</a> for UI components, and <a href="https://tailwindcss.com/">Tailwind CSS</a> for styling. It has integrated theming support, with support for multiple themes with a custom plugin.
+
+<br/>
+
+## Configure the Database
+
+- create a `.env` file in the root of the project
+
+```
+# Create a Postgres database
+POSTGRES_PRISMA_URL=
+POSTGRES_URL_NON_POOLING=
+
+# Generate one with this command: openssl rand -base64 32
+NEXTAUTH_SECRET=
+```
 
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Theming with Shadcn
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This starter kit uses Shadcn for UI components, and Tailwind CSS for styling. It has integrated theming support, with support for multiple themes with a custom plugin.
 
-## Learn More
+### Creating a Theme
 
-To learn more about Next.js, take a look at the following resources:
+To create a theme, add to `lib/shadcn-plugin.ts`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```ts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+ - add colors to `:root` object
+  `
+     "--brown-dark-1": "355 45% 31%",
+        "--magenta-dark-1": "200 55% 37%",
+        "--purple-dark-1": "261 51% 51%",
+        "--dark-green-1": "145 58% 55%",
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+ - configure the `theme` object
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    "dark-1": "hsl(var(--brown-dark-1))",
+    "dark-2": "hsl(var(--magenta-dark-1))",
+    "dark-3": "hsl(var(--purple-dark-1))",
+    "dark-4": "hsl(var(--dark-green-1))",
+```
